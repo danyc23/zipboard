@@ -1,0 +1,18 @@
+@import "./partials/mixins";
+@import "./partials/variables";
+@import "./partials/login";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
+ul {
+  list-style-type: none;
+}
