@@ -1,11 +1,17 @@
+import { Meteor } from "meteor/meteor";
 import React, { useState } from "react";
 import { Redirect, Link } from "react-router-dom";
 
 function Login() {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const submit = (e) => {
+    e.preventDefault();
+    Meteor.loginWithPassword(username, password);
+  };
+
   return (
-    <form className="login">
+    <form onSubmit={submit} className="login">
       <div className="login-main__container">
         <div className="login-border">
           <div className="login-title__container">
@@ -14,15 +20,15 @@ function Login() {
           <section className="login-form">
             <div className="login-container">
               <label className="login-label" for="email">
-                Email
+                Username
               </label>
               <input
                 className="login-input"
-                type="email"
-                value={email}
-                name="email"
-                id="email"
-                onChange={(e) => setEmail(e.target.value)}
+                type="username"
+                value={username}
+                name="username"
+                id="username"
+                onChange={(e) => setUsername(e.target.value)}
               />
             </div>
             <div className="login-container">
@@ -48,11 +54,9 @@ function Login() {
               </div>
               <div className="login-container__remember">
                 <div>
-                  <Link to="/">
-                    <button className="login-container__remember-btn">
-                      Cancel
-                    </button>
-                  </Link>
+                  <button className="login-container__remember-btn">
+                    Cancel
+                  </button>
                 </div>
               </div>
             </div>

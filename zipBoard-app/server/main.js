@@ -1,31 +1,25 @@
-import { Meteor } from 'meteor/meteor';
-import { LinksCollection } from '/imports/api/links';
+import { Meteor } from "meteor/meteor";
+import { CommentsCollection } from "../imports/api/comments";
+import { Accounts } from "meteor/accounts-base";
 
-function insertLink({ title, url }) {
-  LinksCollection.insert({title, url, createdAt: new Date()});
-}
-
+const SEED_USERNAME = "meteorite";
+const SEED_PASSWORD = "password";
+const insertComment = (comment) =>
+  CommentsCollection.insert({ comment: comment });
 Meteor.startup(() => {
-  // If the Links collection is empty, add some data.
-  if (LinksCollection.find().count() === 0) {
-    insertLink({
-      title: 'Do the Tutorial',
-      url: 'https://www.meteor.com/tutorials/react/creating-an-app'
+  if (!Accounts.findUserByUsername(SEED_USERNAME)) {
+    Accounts.createUser({
+      username: SEED_USERNAME,
+      password: SEED_PASSWORD,
     });
-
-    insertLink({
-      title: 'Follow the Guide',
-      url: 'http://guide.meteor.com'
-    });
-
-    insertLink({
-      title: 'Read the Docs',
-      url: 'https://docs.meteor.com'
-    });
-
-    insertLink({
-      title: 'Discussions',
-      url: 'https://forums.meteor.com'
+  }
+  if (CommentsCollection.find().count() === 0) {
+    [
+      "Hi! I am happy learning Meteor!",
+      "I can't stop think about how easy this is!",
+      "Hi! my name is Daniel",
+    ].forEach((comment) => {
+      insertComment(comment);
     });
   }
 });
