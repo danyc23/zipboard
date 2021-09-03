@@ -13,9 +13,6 @@ export default function Options({ logout }) {
         <a href="#" target="_blank" className="options-text">
           Settings
         </a>
-        {/* <button onClick={logout} className="btn">
-          Logout
-        </button> */}
         <button className="logout-btn options-text" onClick={logout}>
           Logout
         </button>
