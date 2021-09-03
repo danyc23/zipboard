@@ -1,6 +1,5 @@
 import { Meteor } from "meteor/meteor";
 import React, { useState } from "react";
-import { Redirect, Link } from "react-router-dom";
 
 function Login() {
   const [username, setUsername] = useState("");

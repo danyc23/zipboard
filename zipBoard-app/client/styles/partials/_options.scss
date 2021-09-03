@@ -1,0 +1,16 @@
+@import "./variables";
+.options {
+  background-color: $blue;
+  width: 300px;
+  height: auto;
+  &-text {
+    color: white;
+    font-size: 20px;
+    margin: 10px;
+    display: block;
+  }
+}
+.logout-btn {
+  background-color: $blue;
+  border: none;
+}
